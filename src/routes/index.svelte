@@ -2,7 +2,7 @@
   import { Alert, Container, Spinner } from "sveltestrap"
 import {onMount} from "svelte"
 
-  import ItemList from '../components/ItemList.svelte'
+  import ItemList from '../components/molecules/ItemList.svelte'
 
 const LOAD_STATUS = {
   IDLING: 'idling',
@@ -25,7 +25,6 @@ onMount(() => {
     })
 })
 </script>
-
 <svelte:head>
 	<title>mercali</title>
 </svelte:head>

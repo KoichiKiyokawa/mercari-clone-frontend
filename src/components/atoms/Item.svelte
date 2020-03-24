@@ -1,6 +1,9 @@
 <script>
   import {Card,Media}from"sveltestrap/src"
-export let items = []
+export let Name = ''
+export let ImageSrc = ''
+export let Price = 0
+export let Description = ''
 </script>
 
 <style>
@@ -19,20 +22,17 @@ export let items = []
   }
 </style>
 
-{#each items as item}
-  <Media>
-    <Media left href="#">
-      <Card body>
-      <Media object src="https://via.placeholder.com/150" alt="item image" />
+<Media>
+  <Media left href="#">
+    <Card body>
+      <Media object src={ImageSrc} alt="item image" />
       <div class="item-body">
         <div class="price">
-          &yen;{item.Price}
+          &yen;{Price}
         </div>
-          <Media heading><p>{item.Name}</p></Media>
-            {item.Description || ''}
+        <Media heading><p>{Name}</p></Media>
+          {Description}
       </div>
-      </Card>
+    </Card>
       </Media>
-    </Media>
-{/each}
-
+  </Media>
