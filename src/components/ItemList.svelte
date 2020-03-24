@@ -1,12 +1,12 @@
 <script>
-  export const items
+  export let items = []
 </script>
 
 <p>
 {#each items as item}
-  <span>item.name</span>
+  <span>{item.Name}</span>
   <span>:</span>
-  <span>item.price</span>
+  <span>{item.Price}</span>
 {/each}
 </p>
 

@@ -1,47 +1,42 @@
 <script>
-  import { onMount } from 'svelte'
+  import Alert from "sveltestrap/src/Alert.svelte";
+  import Spinner from "sveltestrap/src/Spinner.svelte";
+import {onMount} from "svelte"
 
+  import ItemList from '../components/ItemList.svelte'
 
-onMount(()=>{
-  fetch('')
+const LOAD_STATUS = {
+  IDLING: 'idling',
+  LOADING: 'loading',
+  LOADED: 'loaded',
+  FAILED: 'failed'
+}
+let loadStatus = LOAD_STATUS.IDLING
+let items = []
+onMount(() => {
+  loadStatus = LOAD_STATUS.LOADING
+  fetch(`${process.env.ENDPOINT}/items`)
+    .then(response =>  response.json() )
+    .then(data => {
+      items = data
+      loadStatus = LOAD_STATUS.LOADED
+    })
+    .catch(() => {
+      loadStatus= LOAD_STATUS.FAILED
+    })
 })
 </script>
-<style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
-
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-</style>
 
 <svelte:head>
 	<title>mercali</title>
 </svelte:head>
 
-
+{#if loadStatus === LOAD_STATUS.LOADING}
+  <Spinner />
+{:else if loadStatus === LOAD_STATUS.LOADED}
+  <ItemList {items} />
+{:else if loadStatus === LOAD_STATUS.FAILED}
+  <Alert color="danger">
+    <span>商品データの取得に失敗しました。時間をおいて再度お試しください</span>
+  </Alert>
+{/if}
