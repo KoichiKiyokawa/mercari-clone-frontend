@@ -8,8 +8,6 @@ import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 import dotenv from 'dotenv'
 
-dotenv.config()
-
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
@@ -23,7 +21,12 @@ export default {
 		plugins: [
 			replace({
 				'process.browser': true,
-				'process.env.NODE_ENV': JSON.stringify(mode)
+				'process.env.NODE_ENV': JSON.stringify(mode),
+        process: JSON.stringify({
+          env: {
+            ...dotenv.config().parsed
+          }
+        })
 			}),
 			svelte({
 				dev,
