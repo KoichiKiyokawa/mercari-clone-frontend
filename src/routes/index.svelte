@@ -3,6 +3,7 @@
   import { onMount } from 'svelte'
 
   import ItemList from '../components/molecules/ItemList.svelte'
+  import ExhibitionButton from '../components/atoms/ExhibitionButton.svelte'
 
   const LOAD_STATUS = {
     IDLING: 'idling',
@@ -39,3 +40,4 @@
     <span>商品データの取得に失敗しました。時間をおいて再度お試しください</span>
   </Alert>
 {/if}
+<ExhibitionButton />
