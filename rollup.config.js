@@ -22,10 +22,8 @@ export default {
 			replace({
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode),
-        process: JSON.stringify({
-          env: {
-            ...dotenv.config().parsed
-          }
+        MERCARI_CLONE_ENV: JSON.stringify({
+          ...dotenv.config().parsed
         })
 			}),
 			svelte({
