@@ -10,7 +10,7 @@
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run",
-    "pre": "prettier --write --plugin-search-dir=. ./**/*.{js,svelte}"
+    "pre": "prettier --write --plugin-search-dir=. ./**/*.{html,js,svelte}"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
