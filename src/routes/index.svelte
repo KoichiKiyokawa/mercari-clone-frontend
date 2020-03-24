@@ -27,6 +27,13 @@
   })
 </script>
 
+<style>
+  .float-action-button {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+  }
+</style>
 <svelte:head>
   <title>mercali</title>
 </svelte:head>
@@ -40,4 +47,7 @@
     <span>商品データの取得に失敗しました。時間をおいて再度お試しください</span>
   </Alert>
 {/if}
-<ExhibitionButton />
+
+<div class="float-action-button">
+  <ExhibitionButton />
+</div>
