@@ -1,6 +1,5 @@
 <script>
-  import Alert from "sveltestrap/src/Alert.svelte";
-  import Spinner from "sveltestrap/src/Spinner.svelte";
+  import { Alert, Container, Spinner } from "sveltestrap"
 import {onMount} from "svelte"
 
   import ItemList from '../components/ItemList.svelte'
@@ -30,6 +29,7 @@ onMount(() => {
 <svelte:head>
 	<title>mercali</title>
 </svelte:head>
+
 
 {#if loadStatus === LOAD_STATUS.LOADING}
   <Spinner />
