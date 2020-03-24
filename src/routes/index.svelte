@@ -1,34 +1,34 @@
 <script>
-  import { Alert, Container, Spinner } from "sveltestrap"
-import {onMount} from "svelte"
+  import { Alert, Container, Spinner } from 'sveltestrap'
+  import { onMount } from 'svelte'
 
   import ItemList from '../components/molecules/ItemList.svelte'
 
-const LOAD_STATUS = {
-  IDLING: 'idling',
-  LOADING: 'loading',
-  LOADED: 'loaded',
-  FAILED: 'failed'
-}
-let loadStatus = LOAD_STATUS.IDLING
-let items = []
-onMount(() => {
-  loadStatus = LOAD_STATUS.LOADING
-  fetch(`${process.env.ENDPOINT}/items`)
-    .then(response =>  response.json() )
-    .then(data => {
-      items = data
-      loadStatus = LOAD_STATUS.LOADED
-    })
-    .catch(() => {
-      loadStatus= LOAD_STATUS.FAILED
-    })
-})
+  const LOAD_STATUS = {
+    IDLING: 'idling',
+    LOADING: 'loading',
+    LOADED: 'loaded',
+    FAILED: 'failed'
+  }
+  let loadStatus = LOAD_STATUS.IDLING
+  let items = []
+  onMount(() => {
+    loadStatus = LOAD_STATUS.LOADING
+    fetch(`${MERCARI_CLONE_ENV.ENDPOINT}/items`)
+      .then(response => response.json())
+      .then(data => {
+        items = data
+        loadStatus = LOAD_STATUS.LOADED
+      })
+      .catch(() => {
+        loadStatus = LOAD_STATUS.FAILED
+      })
+  })
 </script>
-<svelte:head>
-	<title>mercali</title>
-</svelte:head>
 
+<svelte:head>
+  <title>mercali</title>
+</svelte:head>
 
 {#if loadStatus === LOAD_STATUS.LOADING}
   <Spinner />
