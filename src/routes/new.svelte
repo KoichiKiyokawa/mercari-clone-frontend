@@ -36,8 +36,8 @@
       isValid.Price = form.Price > 0
       errors.Price = isValid.Price ? '' : '価格は1円以上に設定してください'
     },
-    Description: () => {
-      isValid.Description = form.Description.length > 0
+    Description: e => {
+      isValid.Description = e.target.value.length > 0
       errors.Description = isValid.Description
         ? ''
         : '商品の説明を入力してください'
@@ -98,7 +98,7 @@
       type="textarea"
       id="item-description"
       bind:value="{form.Description}"
-      on:blur="{validate.Description}"
+      on:input="{validate.Description}"
     />
     <span class="error">{errors.Description || ''}</span>
   </FormGroup>
