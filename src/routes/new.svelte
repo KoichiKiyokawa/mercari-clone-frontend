@@ -6,7 +6,6 @@
     CustomInput,
     Form,
     FormGroup,
-    FormText,
     Input,
     Label
   } from 'sveltestrap'
@@ -33,6 +32,7 @@
       errors.Name = isValid.Name ? '' : '商品名を入力してください'
     },
     Price: () => {
+      form.Price = Math.floor(form.Price)
       isValid.Price = form.Price > 0
       errors.Price = isValid.Price ? '' : '価格は1円以上に設定してください'
     },
@@ -91,7 +91,6 @@
       label="画像を選択してください"
       accept="image/*"
     />
-    <FormText>jpg, png</FormText>
   </FormGroup>
   <FormGroup>
     <FormLabel id="item-description" label="商品の説明" />
