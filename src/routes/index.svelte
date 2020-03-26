@@ -34,6 +34,7 @@
     right: 32px;
   }
 </style>
+
 <svelte:head>
   <title>mercali</title>
 </svelte:head>
@@ -49,5 +50,5 @@
 {/if}
 
 <div class="float-action-button">
-  <ExhibitionButton />
+  <ExhibitionButton link="/new" />
 </div>
